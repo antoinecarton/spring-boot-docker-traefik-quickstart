@@ -1,0 +1,25 @@
+spring-boot-app:
+  image: example/spring-boot-docker:0.0.1-SNAPSHOT
+  restart: unless-stopped
+  ports:
+    - 9091:9091
+  volumes:
+    - $PWD/mount/config:/opt/spring-boot-docker/config
+    - $PWD/mount/logs:/opt/spring-boot-docker/logs
+  labels:
+    - "traefik.backend=spring-boot-app"
+    - "traefik.frontend.rule=Host:test.spring-boot-app.io"
+
+proxy:
+  image: traefik:v1.0.1
+  restart: unless-stopped
+  command: --configFile=/etc/traefik/traefik.toml
+  ports:
+    - 80:80
+    - 9090:8080
+  volumes:
+    - $PWD/traefik.toml:/etc/traefik/traefik.toml
+    - /var/run/docker.sock:/var/run/docker.sock
+
+# Traefik dashboard will be at: http://127.0.0.1:9090/dashboard/#/
+# REST api will be at http://test.spring-boot-app.io/hello/jack

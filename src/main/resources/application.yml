@@ -1,0 +1,11 @@
+---
+# Default profile
+spring:
+  application:
+    name: hello-app
+
+server:
+  port: 9091
+
+hello:
+  from: Spring-boot app
