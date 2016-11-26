@@ -104,8 +104,7 @@
                                     <inline>
                                         <files>
                                             <file>
-                                                <source>${project.build.directory}/${project.build.finalName}.jar
-                                                </source>
+                                                <source>${project.build.directory}/${project.build.finalName}.jar</source>
                                                 <outputDirectory>${docker.folder}</outputDirectory>
                                             </file>
                                         </files>
@@ -115,12 +114,9 @@
                                 <runCmds>
                                     <runCmd>useradd -U -r -m -d ${docker.folder} spring-user</runCmd>
                                     <runCmd>install -dm755 -o spring-user -g spring-user ${docker.folder}/logs</runCmd>
-                                    <runCmd>install -dm755 -o spring-user -g spring-user ${docker.folder}/config
-                                    </runCmd>
-                                    <runCmd>mv /maven${docker.folder}/${project.build.finalName}.jar ${docker.folder}/${project.build.finalName}.jar
-                                    </runCmd>
-                                    <runCmd>chown spring-user:spring-user ${docker.folder}/${project.build.finalName}.jar
-                                    </runCmd>
+                                    <runCmd>install -dm755 -o spring-user -g spring-user ${docker.folder}/config</runCmd>
+                                    <runCmd>mv /maven${docker.folder}/${project.build.finalName}.jar ${docker.folder}/${project.build.finalName}.jar</runCmd>
+                                    <runCmd>chown spring-user:spring-user ${docker.folder}/${project.build.finalName}.jar</runCmd>
                                 </runCmds>
                                 <user>spring-user</user>
                                 <cmd>java -Duser.timezone=UTC -jar ${project.build.finalName}.jar</cmd>
