@@ -21,5 +21,5 @@ proxy:
     - $PWD/traefik.toml:/etc/traefik/traefik.toml
     - /var/run/docker.sock:/var/run/docker.sock
 
-# Traefik dashboard will be at: http://127.0.0.1:9090/dashboard/#/
+# Traefik dashboard will be at http://127.0.0.1:9090/dashboard/#/
 # REST api will be at http://test.spring-boot-app.io/hello/jack
