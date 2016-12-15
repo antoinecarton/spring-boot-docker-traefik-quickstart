@@ -1,14 +1,19 @@
 package com.example.service;
 
 import com.example.configuration.HelloProperties;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.Resource;
-
+@Service
 public class HelloServiceImpl implements HelloService {
 
-    @Resource
-    private HelloProperties helloProperties;
+    private final HelloProperties helloProperties;
+
+    @Autowired
+    public HelloServiceImpl(HelloProperties helloProperties) {
+        this.helloProperties = helloProperties;
+    }
 
     @Override
     public String hello(String name) {

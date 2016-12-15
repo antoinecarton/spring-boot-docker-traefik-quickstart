@@ -2,14 +2,11 @@ package com.example.controller;
 
 import com.example.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-
-import static com.example.Constants.BeanNames.EXAMPLE_SERVICE;
 
 @Slf4j
 @ResponseBody
@@ -17,8 +14,12 @@ import static com.example.Constants.BeanNames.EXAMPLE_SERVICE;
 @RequestMapping("/hello")
 public class HelloController {
 
-    @Resource(name = EXAMPLE_SERVICE)
-    private HelloService helloService;
+    private final HelloService helloService;
+
+    @Autowired
+    public HelloController(HelloService helloService) {
+        this.helloService = helloService;
+    }
 
     @RequestMapping(path = "/{name}", method = RequestMethod.GET)
     public ResponseEntity<String> hello(@PathVariable String name) {
